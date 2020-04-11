@@ -39,10 +39,18 @@ class SshoogrParentPomPlugin implements Plugin<Project> {
         project.plugins.apply(GroovyProjectPlugin)
         project.plugins.apply(BintrayPlugin)
 
-        project.ext.bintrayUsername  = resolveProperty(project, 'SSHOOGR_BINTRAY_USERNAME', 'bintrayUsername', '**undefined**')
-        project.ext.bintrayApiKey    = resolveProperty(project, 'SSHOOGR_BINTRAY_APIKEY', 'bintrayApiKey', '**undefined**')
+        project.ext.bintrayUsername = resolveProperty(project, 'SSHOOGR_BINTRAY_USERNAME', 'bintrayUsername', '**undefined**')
+        project.ext.bintrayApiKey = resolveProperty(project, 'SSHOOGR_BINTRAY_APIKEY', 'bintrayApiKey', '**undefined**')
         project.ext.sonatypeUsername = resolveProperty(project, 'SSHOOGR_SONATYPE_USERNAME', 'sonatypeUsername', '**undefined**')
         project.ext.sonatypePassword = resolveProperty(project, 'SSHOOGR_SONATYPE_PASSWORD', 'sonatypePassword', '**undefined**')
+        project.ext.githubUsername = resolveProperty(project, 'SSHOOGR_GITHUB_USERNAME', 'githubUsername', '**undefined**')
+        project.ext.githubPassword = resolveProperty(project, 'SSHOOGR_GITHUB_PASSWORD', 'githubPassword', '**undefined**')
+        if (isBlank(System.getProperty('org.ajoberstar.grgit.auth.username'))) {
+            System.setProperty('org.ajoberstar.grgit.auth.username', project.githubUsername)
+        }
+        if (isBlank(System.getProperty('org.ajoberstar.grgit.auth.password'))) {
+            System.setProperty('org.ajoberstar.grgit.auth.password', project.githubPassword)
+        }
 
         project.extensions.findByType(ProjectConfigurationExtension).with {
             release = resolveProperty(project, 'SSHOOGR_RELEASE', 'release', 'false').toBoolean()
@@ -74,6 +82,10 @@ class SshoogrParentPomPlugin implements Plugin<Project> {
                     sonatype {
                         username = project.sonatypeUsername
                         password = project.sonatypePassword
+                    }
+                    github {
+                        username = project.githubUsername
+                        password = project.githubPassword
                     }
                 }
 
@@ -148,6 +160,12 @@ class SshoogrParentPomPlugin implements Plugin<Project> {
                         }
                     }
                 }
+            }
+
+            configurations {
+                all*.exclude group: 'commons-logging'
+                all*.exclude group: 'log4j'
+                all*.exclude module: 'slf4j-simple'
             }
 
             configurations.all {
