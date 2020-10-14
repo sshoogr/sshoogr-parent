@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aestasit.gradle.plugins
+package com.aestasit.sshoogr.gradle.plugins
+
 
 import enforcer.rules.BanDuplicateClasses
 import enforcer.rules.DependencyConvergence
 import enforcer.rules.EnforceBytecodeVersion
 import enforcer.rules.RequireJavaVersion
-import groovy.transform.CompileStatic
 import org.gradle.BuildAdapter
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aestasit.gradle.plugins
+package com.aestasit.sshoogr.gradle.plugins
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
