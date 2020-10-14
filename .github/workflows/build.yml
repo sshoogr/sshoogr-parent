@@ -31,7 +31,6 @@ jobs:
             ${{ runner.os }}-gradlew-
 
       - name: Build
-        working-directory: ./main
         run: |
           chmod +x gradlew
           ./gradlew build
