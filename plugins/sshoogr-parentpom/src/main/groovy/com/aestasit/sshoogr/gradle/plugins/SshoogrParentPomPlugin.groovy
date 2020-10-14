@@ -150,7 +150,7 @@ class SshoogrParentPomPlugin implements Plugin<Project> {
                 }
             }
 
-            dependencyUpdates.resolutionStrategy = {
+            dependencyUpdates.resolutionStrategy {
                 componentSelection { rules ->
                     rules.all { selection ->
                         boolean rejected = ['alpha', 'beta', 'rc', 'cr'].any { qualifier ->
