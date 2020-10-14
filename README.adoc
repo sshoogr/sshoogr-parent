@@ -1,17 +1,15 @@
-= sshoogr-parentpom
+= sshoogr-parent
 :linkattrs:
 :project-owner:   sshoogr
 :project-repo:    sshoogr
-:project-name:    sshoogr-parentpom
+:project-name:    sshoogr-parent
 :project-group:   com.aestasit.sshoogr
-:project-version: 0.1.0
 
 image:https://github.com/{project-owner}/{project-name}/workflows/Build/badge.svg["Build Status", link="https://github.com/{project-owner}/{project-name}/actions"]
 image:http://img.shields.io/badge/license-ASL2-blue.svg["ASL2 Licensed", link="http://opensource.org/licenses/ASL2"]
-image:https://api.bintray.com/packages/{project-owner}/{project-repo}/{project-name}/images/download.svg[link="https://bintray.com/{project-owner}/{project-repo}/{project-name}/_latestVersion"]
 
 ---
 
-Defines the parent POM for all Sshoogr related projects.
+Defines the parent build for all sshoogr related projects.
 
 See link:http://andresalmiray.com/the-gradle-pom/[The Gradle POM] and link:http://andresalmiray.com/the-gradle-superpom/[The Gradle SuperPOM] for more information on this technique.

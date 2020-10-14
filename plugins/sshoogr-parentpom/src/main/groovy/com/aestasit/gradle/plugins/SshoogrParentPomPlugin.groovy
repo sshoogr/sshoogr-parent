@@ -23,7 +23,7 @@ import org.kordamp.gradle.plugin.base.ProjectConfigurationExtension
 import org.kordamp.gradle.plugin.bintray.BintrayPlugin
 import org.kordamp.gradle.plugin.project.groovy.GroovyProjectPlugin
 
-import static org.kordamp.gradle.StringUtils.isBlank
+import static org.kordamp.gradle.util.StringUtils.isBlank
 
 /**
  * @author Andres Almiray
@@ -45,6 +45,7 @@ class SshoogrParentPomPlugin implements Plugin<Project> {
         project.ext.sonatypePassword = resolveProperty(project, 'SSHOOGR_SONATYPE_PASSWORD', 'sonatypePassword', '**undefined**')
         project.ext.githubUsername = resolveProperty(project, 'SSHOOGR_GITHUB_USERNAME', 'githubUsername', '**undefined**')
         project.ext.githubPassword = resolveProperty(project, 'SSHOOGR_GITHUB_PASSWORD', 'githubPassword', '**undefined**')
+
         if (isBlank(System.getProperty('org.ajoberstar.grgit.auth.username'))) {
             System.setProperty('org.ajoberstar.grgit.auth.username', project.githubUsername)
         }

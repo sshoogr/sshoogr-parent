@@ -13,15 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
+
+buildscript {
     repositories {
-        jcenter()
         gradlePluginPortal()
+        jcenter()
+        mavenLocal()
     }
-    plugins {
-        id 'org.kordamp.gradle.groovy-project' version kordampPluginVersion
-        id 'org.kordamp.gradle.plugin'         version kordampPluginVersion
+    dependencies {
+        classpath "org.kordamp.gradle:groovy-project-gradle-plugin:$kordampPluginVersion"
+        classpath "org.kordamp.gradle:plugin-gradle-plugin:$kordampPluginVersion"
+        classpath "org.kordamp.gradle:settings-gradle-plugin:$kordampPluginVersion"
+        classpath "org.kordamp.gradle:inline-gradle-plugin:$kordampPluginVersion"
+        classpath "org.kordamp.gradle:insight-gradle-plugin:$kordampPluginVersion"
     }
 }
 
-rootProject.name = 'sshoogr-parentpom'
+apply plugin: 'org.kordamp.gradle.settings'
+apply plugin: 'org.kordamp.gradle.insight'
+apply plugin: 'org.kordamp.gradle.inline'
+
+rootProject.name = 'sshoogr-parent'
+
+projects {
+    directories = ['plugins']
+
+    plugins {
+        all {
+            id 'idea'
+        }
+        path(':') {
+            id 'org.kordamp.gradle.groovy-project'
+            id 'org.kordamp.gradle.bintray'
+        }
+        dir('plugins') {
+            id 'java-library'
+            id 'groovy'
+            id 'org.kordamp.gradle.plugin'
+        }
+    }
+}

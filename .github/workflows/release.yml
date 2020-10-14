@@ -14,16 +14,19 @@
 # limitations under the License.
 #
 
-name: Build
+name: Release
 
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - "v*"
 
 jobs:
-  build:
-    name: Build
+  Release:
     runs-on: ubuntu-latest
     env:
       CI: true
+      SSHOOGR_RELEASE: true
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK 1.8
@@ -44,4 +47,4 @@ jobs:
             ${{ runner.os }}-gradlew-
       - uses: eskatos/gradle-command-action@v1
         with:
-          arguments: build -S
+          arguments: publishPlugins
